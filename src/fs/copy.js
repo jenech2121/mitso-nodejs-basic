@@ -1,14 +1,14 @@
-import fs from 'node:fs';
+import fs from 'fs/promises';
 const copy = async () => {
     // Write your code here 
-    fs.mkdir('./files_copy', {recursive: true}, (err) =>{})
-    fs.cp('./files', './files_copy',{recursive:true}, (err) => {
-      if (err){;
-    console.log('FS operation success');
-    } else{
-        console.error('FS operation failed');
-    } 
-    });
+    try{
+    await fs.mkdir('./files_copy', { flag:"wx",} )
+    await fs.cp('./files', './files_copy',{recursive:true, flag:"wx",});
+    }
+    catch(error){
+        console.log("FS operation failed")
+    }
+    
 };
 
 await copy();

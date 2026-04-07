@@ -1,14 +1,15 @@
-import fs from 'node:fs';
+import fs from 'fs/promises';
+
 const create = async () => {
     // Write your code here 
-    fs.writeFile('./files/fresh.txt', 'I am fresh and young', (err) => {
+    try{
+    await fs.writeFile('./files/fresh.txt', 'I am fresh and young',{ flag :"wx", })
+    }
+    catch(error){
+        console.log("FS operation failed");
+
+    }
     
-    if (err){;
-    console.log('FS operation success');
-    } else{
-        console.error('FS operation failed');
-    } 
-    });
 };
 
 await create();
